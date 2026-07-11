@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudT6 — AI-Powered Cloud, Cyber Security &amp; Digital Transformation Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,400..600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0E1C2F;
+    --navy-deep: #08111C;
+    --navy-light: #172E4A;
+    --gold: #AA8C64;
+    --gold-bright: #CBAD82;
+    --gold-dark: #8A6F45;
+    --cream: #F7F5F1;
+    --cream-dim: #EFEBE2;
+    --slate: #5B6B82;
+    --slate-light: #9AA3B0;
+    --white: #FFFFFF;
+    --line: #26405F;
+    --line-light: #E1DDD2;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--cream);
+    color: var(--navy);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color: var(--navy);
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color: var(--gold-dark);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow.on-dark{ color: var(--gold-bright); }
+  .eyebrow::before{
+    content:'';
+    width:22px; height:1px;
+    background: var(--gold-dark);
+    display:inline-block;
+  }
+  .eyebrow.on-dark::before{ background: var(--gold-bright); }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  section{ position:relative; }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  :focus-visible{
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(8,17,28,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(170,140,100,0.18);
+    transition: background 0.3s ease;
+  }
+  nav{
+    max-width:1180px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+    color:var(--white);
+  }
+  .logo span{ color:var(--gold-bright); }
+  .nav-links{
+    display:flex; gap:36px;
+    font-size:0.86rem;
+    font-weight:500;
+  }
+  .nav-links a{
+    color: var(--slate-light);
+    transition: color 0.2s ease;
+    position:relative;
+  }
+  .nav-links a:hover{ color: var(--white); }
+  .nav-cta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    letter-spacing:0.06em;
+    color: var(--navy-deep);
+    background: var(--gold-bright);
+    padding:10px 20px;
+    border-radius:2px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--white); transform: translateY(-1px); }
+  @media (max-width:860px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1200px 600px at 82% -10%, rgba(170,140,100,0.16), transparent 60%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy) 100%);
+    color: var(--white);
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding: 140px 0 90px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(170,140,100,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(170,140,100,0.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 900px 500px at 70% 20%, black, transparent 75%);
+    pointer-events:none;
+  }
+  .hero-inner{ position:relative; max-width:760px; }
+  .hero .eyebrow{ margin-bottom:26px; opacity:0; animation: rise 0.8s ease forwards 0.1s; }
+  .hero h1{
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height:1.04;
+    font-weight:500;
+    color: var(--white);
+    opacity:0; animation: rise 0.9s ease forwards 0.25s;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    color: var(--gold-bright);
+  }
+  .hero p.lede{
+    margin-top:28px;
+    max-width:560px;
+    font-size:1.1rem;
+    color: var(--slate-light);
+    opacity:0; animation: rise 0.9s ease forwards 0.4s;
+  }
+  .hero-actions{
+    margin-top:44px;
+    display:flex; align-items:center; gap:28px; flex-wrap:wrap;
+    opacity:0; animation: rise 0.9s ease forwards 0.55s;
+  }
+  .btn-primary{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    background: var(--gold-bright);
+    color: var(--navy-deep);
+    padding:15px 30px;
+    border-radius:2px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px -10px rgba(170,140,100,0.5); }
+  .btn-ghost-line{
+    font-size:0.86rem;
+    color: var(--slate-light);
+    border-bottom:1px solid var(--line);
+    padding-bottom:3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-ghost-line:hover{ color:var(--white); border-color: var(--gold-bright); }
+
+  .hero-tagline-strip{
+    position:relative;
+    margin-top:88px;
+    padding-top:26px;
+    border-top:1px solid rgba(170,140,100,0.22);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    opacity:0; animation: rise 0.9s ease forwards 0.7s;
+  }
+  .tagline-words{
+    display:flex; gap:22px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    color: var(--slate-light);
+  }
+  .tagline-words span:not(:last-child)::after{ content:'—'; margin-left:22px; color: var(--gold-dark); }
+  .hero-region{
+    font-size:0.8rem;
+    color: var(--gold-bright);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.05em;
+  }
+
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(16px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head h2{
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    margin-top:16px;
+    line-height:1.15;
+  }
+  .section-head p{
+    margin-top:18px;
+    color: var(--slate);
+    font-size:1.02rem;
+    max-width:560px;
+  }
+  section.on-dark .section-head p{ color: var(--slate-light); }
+
+  /* ---------- OVERVIEW ---------- */
+  .overview{ padding:120px 0; background: var(--cream); }
+  .overview-lede{
+    font-size:1.3rem;
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    color: var(--navy);
+    max-width:800px;
+    line-height:1.5;
+    margin: 22px 0 60px;
+  }
+  .overview-lede em{ font-style:italic; color: var(--gold-dark); }
+
+  .feature-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top:1px solid var(--line-light);
+    border-left:1px solid var(--line-light);
+  }
+  .feature-cell{
+    border-right:1px solid var(--line-light);
+    border-bottom:1px solid var(--line-light);
+    padding:34px 28px;
+    transition: background 0.25s ease;
+  }
+  .feature-cell:hover{ background: var(--cream-dim); }
+  .feature-icon{ width:26px; height:26px; margin-bottom:22px; color: var(--gold-dark); }
+  .feature-cell h4{ font-size:1.02rem; font-weight:600; font-family:'Inter',sans-serif; margin-bottom:10px; }
+  .feature-cell p{ font-size:0.9rem; color: var(--slate); }
+  @media (max-width:900px){ .feature-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:520px){ .feature-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- VISION / MISSION ---------- */
+  .vm{
+    background: var(--navy);
+    color: var(--white);
+    padding:120px 0;
+  }
+  .vm-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1px;
+    background: rgba(170,140,100,0.22);
+    margin-top:50px;
+  }
+  .vm-cell{
+    background: var(--navy);
+    padding:48px 44px;
+  }
+  .vm-cell .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    color: var(--gold-bright);
+    margin-bottom:20px;
+    display:block;
+  }
+  .vm-cell p{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:400;
+    line-height:1.45;
+    color: var(--white);
+  }
+  @media (max-width:760px){ .vm-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- SERVICES ---------- */
+  .services{ padding:120px 0; background: var(--cream); }
+  .service-list{ margin-top:10px; border-top:1px solid var(--line-light); }
+  .service-row{
+    display:grid;
+    grid-template-columns: 90px 1fr 1.4fr;
+    gap:32px;
+    padding:34px 0;
+    border-bottom:1px solid var(--line-light);
+    align-items:start;
+    cursor:pointer;
+  }
+  .service-row .num{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--gold-dark);
+    font-size:0.85rem;
+    padding-top:4px;
+  }
+  .service-row h3{
+    font-size:1.35rem;
+    font-weight:500;
+    line-height:1.25;
+  }
+  .service-row .service-sub{
+    font-size:0.94rem;
+    color: var(--slate);
+    margin-top:8px;
+  }
+  .service-tags{
+    display:flex; flex-wrap:wrap; gap:10px 14px;
+  }
+  .service-tags span{
+    font-size:0.82rem;
+    color: var(--navy);
+    background: var(--cream-dim);
+    border:1px solid var(--line-light);
+    padding:6px 12px;
+    border-radius:2px;
+  }
+  @media (max-width:760px){
+    .service-row{ grid-template-columns: 50px 1fr; }
+    .service-tags{ grid-column: 1 / -1; margin-top:16px; }
+  }
+
+  /* ---------- DIFFERENTIATORS ---------- */
+  .diff{ background: var(--navy); color:var(--white); padding:120px 0; }
+  .diff-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:1px;
+    background: rgba(170,140,100,0.18);
+    margin-top:50px;
+  }
+  .diff-cell{
+    background: var(--navy);
+    padding:38px 32px;
+    transition: background 0.25s ease;
+  }
+  .diff-cell:hover{ background: var(--navy-light); }
+  .diff-cell .di-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color: var(--gold-bright);
+    letter-spacing:0.12em;
+  }
+  .diff-cell h4{
+    color: var(--white);
+    font-size:1.1rem;
+    font-weight:500;
+    margin:16px 0 10px;
+    font-family:'Fraunces', serif;
+  }
+  .diff-cell p{ color: var(--slate-light); font-size:0.92rem; }
+  @media (max-width:900px){ .diff-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:560px){ .diff-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- INDUSTRIES ---------- */
+  .industries{ padding:110px 0 120px; background: var(--cream); }
+  .industry-wrap{
+    display:flex; flex-wrap:wrap; gap:14px;
+    margin-top:44px;
+  }
+  .industry-chip{
+    font-size:0.95rem;
+    padding:14px 22px;
+    border:1px solid var(--line-light);
+    border-radius:2px;
+    color: var(--navy);
+    background: var(--white);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .industry-chip:hover{ border-color: var(--gold); color: var(--gold-dark); transform: translateY(-2px); }
+
+  /* ---------- METHODOLOGY ---------- */
+  .method{ background: var(--navy-deep); color:var(--white); padding:130px 0; overflow:hidden; }
+  .method-body{
+    margin-top:60px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .orbit-wrap{ position:relative; }
+  .orbit-svg{ width:100%; height:auto; }
+  .orbit-node-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    fill: var(--slate-light);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .orbit-node-title{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    fill: var(--white);
+    font-weight:500;
+  }
+  .method-steps{ display:flex; flex-direction:column; }
+  .method-step{
+    display:grid;
+    grid-template-columns:44px 1fr;
+    gap:18px;
+    padding:16px 0;
+    border-bottom:1px solid rgba(170,140,100,0.18);
+  }
+  .method-step:first-child{ border-top:1px solid rgba(170,140,100,0.18); }
+  .method-step .ms-num{ font-family:'IBM Plex Mono', monospace; color: var(--gold-bright); font-size:0.85rem; padding-top:2px; }
+  .method-step h4{ color:var(--white); font-size:1.02rem; font-weight:500; font-family:'Inter',sans-serif; margin-bottom:4px; }
+  .method-step p{ color: var(--slate-light); font-size:0.88rem; }
+  @media (max-width:900px){
+    .method-body{ grid-template-columns:1fr; }
+    .orbit-wrap{ order:2; max-width:420px; margin:0 auto; }
+  }
+
+  /* ---------- TEAM ---------- */
+  .team{ padding:120px 0; background: var(--cream); }
+  .team-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:1px;
+    background: var(--line-light);
+    border:1px solid var(--line-light);
+    margin-top:50px;
+  }
+  .team-cell{
+    background: var(--white);
+    padding:36px 30px;
+    transition: background 0.2s ease;
+  }
+  .team-cell:hover{ background: var(--cream-dim); }
+  .team-initials{
+    width:52px; height:52px;
+    border-radius:50%;
+    background: var(--navy);
+    color: var(--gold-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif;
+    font-size:1rem;
+    margin-bottom:22px;
+  }
+  .team-cell h4{ font-size:1.05rem; font-weight:600; font-family:'Inter',sans-serif; }
+  .team-cell .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    color: var(--gold-dark);
+    text-transform:uppercase;
+    margin:8px 0 14px;
+  }
+  .team-cell p{ font-size:0.88rem; color: var(--slate); }
+  @media (max-width:860px){ .team-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:560px){ .team-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- PRESENCE + GLANCE ---------- */
+  .presence{ background: var(--navy); color: var(--white); padding:120px 0; }
+  .presence-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:60px;
+  }
+  .region-block h3{ color: var(--white); font-size:1.3rem; margin-bottom:18px; }
+  .city-list{ list-style:none; }
+  .city-list li{
+    padding:14px 0;
+    border-bottom:1px solid rgba(170,140,100,0.18);
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:0.98rem;
+    color: var(--slate-light);
+  }
+  .city-list li span.pin{ color: var(--gold-bright); font-family:'IBM Plex Mono', monospace; font-size:0.75rem; }
+
+  .glance{ padding:120px 0; background: var(--cream); }
+  .glance-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:14px 40px;
+  }
+  .glance-item{
+    display:flex; align-items:flex-start; gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line-light);
+  }
+  .glance-item .check{
+    width:20px; height:20px; flex-shrink:0; margin-top:2px;
+    color: var(--gold-dark);
+  }
+  .glance-item span{ font-size:0.98rem; color: var(--navy); }
+  @media (max-width:700px){ .glance-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta{
+    background: var(--navy-deep);
+    color: var(--white);
+    padding:140px 0 70px;
+    text-align:center;
+    position:relative;
+  }
+  .cta::before{
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(700px 380px at 50% 0%, rgba(170,140,100,0.14), transparent 70%);
+    pointer-events:none;
+  }
+  .cta-inner{ position:relative; max-width:720px; margin:0 auto; }
+  .cta h2{
+    color: var(--white);
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    line-height:1.15;
+  }
+  .cta h2 em{ font-style:italic; color: var(--gold-bright); }
+  .cta p.brand-promise{
+    margin-top:22px;
+    color: var(--slate-light);
+    font-size:1.05rem;
+    max-width:520px; margin-left:auto; margin-right:auto;
+  }
+  .cta .btn-primary{ margin-top:40px; display:inline-block; }
+
+  footer{
+    margin-top:100px;
+    border-top:1px solid rgba(170,140,100,0.18);
+    padding-top:32px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    font-size:0.82rem;
+    color: var(--slate-light);
+  }
+  footer a{ color: var(--gold-bright); }
+  footer .foot-links{ display:flex; gap:24px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">CLOUD<span>T6</span></div>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#team">Team</a>
+    </div>
+    <a href="#contact" class="nav-cta">GET IN TOUCH</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow on-dark">India · Southeast Asia</div>
+    <h1>AI-powered cloud, cyber security &amp; <em>digital transformation.</em></h1>
+    <p class="lede">CloudT6 is a next-generation consultancy helping organizations modernize technology, strengthen cyber resilience and unlock measurable value — through cloud, AI, security, automation and platform engineering.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">START A CONVERSATION</a>
+      <a href="#services" class="btn-ghost-line">See what we do →</a>
+    </div>
+    <div class="hero-tagline-strip">
+      <div class="tagline-words">
+        <span>Transform</span><span>Automate</span><span>Innovate</span><span>Secure</span><span>Scale</span>
+      </div>
+      <div class="hero-region">EST. FOR INDIA, GCC &amp; SEA ENTERPRISES</div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="overview" id="overview">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Company Overview</div>
+      <p class="overview-lede">Modernizing technology. <em>Securing and accelerating</em> business outcomes — for enterprises, mid-market and growth-focused businesses across India, the GCC, Singapore and Malaysia.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature-cell">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 16 8a4.5 4.5 0 0 1 1 8.9"/><path d="M6 18h11"/></svg>
+        <h4>Cloud, AI &amp; Cyber Security</h4>
+        <p>A unified practice spanning cloud modernization, applied AI and cyber security — engineered to work together, not in silos.</p>
+      </div>
+      <div class="feature-cell">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18M12 3a9 9 0 0 0 0 18"/></svg>
+        <h4>Consulting-Led Approach</h4>
+        <p>End-to-end partnership from strategy through implementation, adoption and governance — not advisory alone.</p>
+      </div>
+      <div class="feature-cell">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>
+        <h4>Regional Footprint</h4>
+        <p>Active presence across India, the GCC region, Singapore and Malaysia.</p>
+      </div>
+      <div class="feature-cell">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
+        <h4>Outcome Focused</h4>
+        <p>Relentless focus on measurable business outcomes, resilience and sustainable growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / MISSION -->
+<section class="vm on-dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-dark">Vision &amp; Mission</div>
+      <h2>Purpose-built for a secure, intelligent future.</h2>
+    </div>
+    <div class="vm-grid reveal">
+      <div class="vm-cell">
+        <span class="tag">VISION</span>
+        <p>To become the most trusted AI-powered digital transformation and cyber security partner across Asia and the Middle East — enabling organizations to build intelligent, secure, resilient and future-ready enterprises.</p>
+      </div>
+      <div class="vm-cell">
+        <span class="tag">MISSION</span>
+        <p>To help organizations transform business outcomes through cloud modernization, cyber security, artificial intelligence, intelligent automation and platform engineering — delivering measurable value and long-term advantage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">What We Do</div>
+      <h2>Six practices. One transformation partner.</h2>
+      <p>Every engagement draws on the same integrated bench — cloud, security, AI, platform engineering, automation and advisory — sized to the outcome you need.</p>
+    </div>
+    <div class="service-list reveal">
+
+      <div class="service-row">
+        <div class="num">01</div>
+        <div>
+          <h3>Cloud &amp; Infrastructure Transformation</h3>
+          <div class="service-sub">Migrate, modernize and optimize enterprise technology environments.</div>
+        </div>
+        <div class="service-tags">
+          <span>Azure Cloud Migration</span><span>Hybrid Cloud Transformation</span>
+          <span>Cloud Architecture &amp; Modernization</span><span>Data Center Transformation</span>
+          <span>Infrastructure Assessments</span><span>Cloud Governance Frameworks</span>
+          <span>Disaster Recovery Modernization</span><span>Cloud Cost Optimization</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="num">02</div>
+        <div>
+          <h3>Cyber Security &amp; Zero Trust Transformation</h3>
+          <div class="service-sub">Secure digital ecosystems, reduce cyber risk, strengthen resilience.</div>
+        </div>
+        <div class="service-tags">
+          <span>Cyber Security Assessments</span><span>Zero Trust Architecture Design</span>
+          <span>Cloud Security Strategy &amp; Implementation</span><span>SOC Enablement</span>
+          <span>Threat Detection &amp; Incident Response</span><span>Identity &amp; Access Management</span>
+          <span>Security Governance, Risk &amp; Compliance</span><span>Palo Alto / Fortinet / Zscaler Solutions</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="num">03</div>
+        <div>
+          <h3>AI Transformation &amp; Enterprise Intelligence</h3>
+          <div class="service-sub">Identify, adopt and operationalize artificial intelligence.</div>
+        </div>
+        <div class="service-tags">
+          <span>AI Readiness Assessments</span><span>AI Strategy &amp; Adoption Roadmaps</span>
+          <span>Generative AI Programs</span><span>Enterprise AI Solutions</span>
+          <span>AI-Powered Knowledge Platforms</span><span>Intelligent Process Automation</span>
+          <span>AI Governance &amp; Responsible AI</span><span>AI Use Case Discovery Workshops</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="num">04</div>
+        <div>
+          <h3>Platform Engineering &amp; DevOps</h3>
+          <div class="service-sub">Accelerate innovation through modern, cloud-native engineering.</div>
+        </div>
+        <div class="service-tags">
+          <span>DevOps Transformation</span><span>CI/CD Engineering</span>
+          <span>Platform Engineering</span><span>Internal Developer Platforms</span>
+          <span>Kubernetes Enablement</span><span>Container Platform Modernization</span>
+          <span>DevSecOps Implementation</span><span>Release Automation</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="num">05</div>
+        <div>
+          <h3>Automation &amp; Intelligent Operations</h3>
+          <div class="service-sub">Reduce operational complexity through automation-first delivery.</div>
+        </div>
+        <div class="service-tags">
+          <span>Ansible Automation Platform</span><span>Terraform Automation</span>
+          <span>Infrastructure as Code</span><span>Configuration Management</span>
+          <span>Workflow Automation</span><span>Compliance Automation</span>
+          <span>AIOps Enablement</span><span>Self-Healing Infrastructure</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="num">06</div>
+        <div>
+          <h3>Digital Transformation Advisory</h3>
+          <div class="service-sub">Align technology investment with business outcomes.</div>
+        </div>
+        <div class="service-tags">
+          <span>Digital Transformation Strategy</span><span>Technology Roadmaps</span>
+          <span>Enterprise Architecture Consulting</span><span>Transformation Assessments</span>
+          <span>Program Governance</span><span>Change Management</span>
+          <span>Executive Advisory Services</span><span>Business Case Development</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-dark">Our Differentiators</div>
+      <h2 style="color:#fff;">Why organizations choose CloudT6.</h2>
+    </div>
+    <div class="diff-grid reveal">
+      <div class="diff-cell"><span class="di-num">01</span><h4>Business-Led Transformation</h4><p>We focus on measurable business outcomes rather than technology implementation alone.</p></div>
+      <div class="diff-cell"><span class="di-num">02</span><h4>Security by Design</h4><p>Cyber security is integrated into every transformation initiative for resilient operations.</p></div>
+      <div class="diff-cell"><span class="di-num">03</span><h4>AI at the Core</h4><p>We help organizations leverage AI responsibly to improve decisions, productivity and CX.</p></div>
+      <div class="diff-cell"><span class="di-num">04</span><h4>Deep Transformation Expertise</h4><p>Our leadership brings extensive experience delivering enterprise-scale initiatives.</p></div>
+      <div class="diff-cell"><span class="di-num">05</span><h4>Automation-First Philosophy</h4><p>Automation is embedded throughout to improve scalability, reliability and efficiency.</p></div>
+      <div class="diff-cell"><span class="di-num">06</span><h4>End-to-End Ownership</h4><p>From strategy and architecture to adoption, optimization and security governance.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Industries We Serve</div>
+      <h2>Domain experience across sectors.</h2>
+    </div>
+    <div class="industry-wrap reveal">
+      <div class="industry-chip">Manufacturing</div>
+      <div class="industry-chip">Retail &amp; E-Commerce</div>
+      <div class="industry-chip">Banking &amp; Financial Services</div>
+      <div class="industry-chip">Healthcare</div>
+      <div class="industry-chip">Logistics &amp; Supply Chain</div>
+      <div class="industry-chip">Technology &amp; SaaS</div>
+      <div class="industry-chip">Telecom</div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="method" id="approach">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-dark">Our Methodology</div>
+      <h2 style="color:#fff;">The CloudT6 Transformation Framework™</h2>
+      <p>Eight stages, one continuous loop — every engagement moves through discovery and scale, then folds back into optimization.</p>
+    </div>
+
+    <div class="method-body">
+      <div class="orbit-wrap reveal">
+        <svg class="orbit-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of the eight-stage transformation framework arranged in a circle">
+          <circle cx="300" cy="300" r="220" fill="none" stroke="#26405F" stroke-width="1"/>
+          <circle cx="300" cy="300" r="150" fill="none" stroke="#26405F" stroke-width="1" stroke-dasharray="2 6" opacity="0.5"/>
+          <text x="300" y="295" text-anchor="middle" class="orbit-node-title" font-size="17">Discover</text>
+          <text x="300" y="316" text-anchor="middle" class="orbit-node-label">→ Scale</text>
+
+          <!-- nodes -->
+          <g>
+            <circle cx="300" cy="80" r="7" fill="#CBAD82"/>
+            <text x="300" y="55" text-anchor="middle" class="orbit-node-label">01</text>
+            <text x="300" y="112" text-anchor="middle" class="orbit-node-title">Discover</text>
+          </g>
+          <g>
+            <circle cx="455.5" cy="144.5" r="7" fill="#CBAD82"/>
+            <text x="482" y="128" text-anchor="start" class="orbit-node-label">02</text>
+            <text x="482" y="152" text-anchor="start" class="orbit-node-title">Assess</text>
+          </g>
+          <g>
+            <circle cx="520" cy="300" r="7" fill="#CBAD82"/>
+            <text x="540" y="284" text-anchor="start" class="orbit-node-label">03</text>
+            <text x="540" y="308" text-anchor="start" class="orbit-node-title">Design</text>
+          </g>
+          <g>
+            <circle cx="455.5" cy="455.5" r="7" fill="#CBAD82"/>
+            <text x="482" y="478" text-anchor="start" class="orbit-node-label">04</text>
+            <text x="482" y="502" text-anchor="start" class="orbit-node-title">Transform</text>
+          </g>
+          <g>
+            <circle cx="300" cy="520" r="7" fill="#CBAD82"/>
+            <text x="300" y="552" text-anchor="middle" class="orbit-node-label">05</text>
+            <text x="300" y="574" text-anchor="middle" class="orbit-node-title">Automate</text>
+          </g>
+          <g>
+            <circle cx="144.5" cy="455.5" r="7" fill="#CBAD82"/>
+            <text x="118" y="478" text-anchor="end" class="orbit-node-label">06</text>
+            <text x="118" y="502" text-anchor="end" class="orbit-node-title">Adopt</text>
+          </g>
+          <g>
+            <circle cx="80" cy="300" r="7" fill="#CBAD82"/>
+            <text x="60" y="284" text-anchor="end" class="orbit-node-label">07</text>
+            <text x="60" y="308" text-anchor="end" class="orbit-node-title">Optimize</text>
+          </g>
+          <g>
+            <circle cx="144.5" cy="144.5" r="7" fill="#CBAD82"/>
+            <text x="118" y="128" text-anchor="end" class="orbit-node-label">08</text>
+            <text x="118" y="152" text-anchor="end" class="orbit-node-title">Scale</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="method-steps reveal">
+        <div class="method-step"><div class="ms-num">01</div><div><h4>Discover</h4><p>Understand business goals, opportunities, challenges and security requirements.</p></div></div>
+        <div class="method-step"><div class="ms-num">02</div><div><h4>Assess</h4><p>Evaluate technology landscapes, cyber security posture, readiness and risks.</p></div></div>
+        <div class="method-step"><div class="ms-num">03</div><div><h4>Design</h4><p>Develop future-state architectures, security frameworks and roadmaps.</p></div></div>
+        <div class="method-step"><div class="ms-num">04</div><div><h4>Transform</h4><p>Execute migration, modernization, implementation and security initiatives.</p></div></div>
+        <div class="method-step"><div class="ms-num">05</div><div><h4>Automate</h4><p>Embed intelligent automation and operational excellence.</p></div></div>
+        <div class="method-step"><div class="ms-num">06</div><div><h4>Adopt</h4><p>Drive organizational change, user adoption and governance.</p></div></div>
+        <div class="method-step"><div class="ms-num">07</div><div><h4>Optimize</h4><p>Continuously improve performance, security, compliance and outcomes.</p></div></div>
+        <div class="method-step"><div class="ms-num">08</div><div><h4>Scale</h4><p>Enable sustainable growth, innovation and enterprise resilience.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Our People</div>
+      <h2>Leadership team.</h2>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-cell">
+        <div class="team-initials">VC</div>
+        <h4>Vijayachander C</h4>
+        <div class="role">Chief Executive Officer</div>
+        <p>Business strategy, transformation leadership, commercial governance.</p>
+      </div>
+      <div class="team-cell">
+        <div class="team-initials">PS</div>
+        <h4>Padmanaban S</h4>
+        <div class="role">Chief Strategy Officer</div>
+        <p>Program governance, business consulting, presales excellence.</p>
+      </div>
+      <div class="team-cell">
+        <div class="team-initials">AR</div>
+        <h4>Anis R</h4>
+        <div class="role">Chief Technology Officer</div>
+        <p>Cloud &amp; enterprise architecture, networking, infrastructure strategy.</p>
+      </div>
+      <div class="team-cell">
+        <div class="team-initials">AD</div>
+        <h4>Arun D</h4>
+        <div class="role">Chief Operating Officer</div>
+        <p>Delivery leadership, service management, operational governance.</p>
+      </div>
+      <div class="team-cell">
+        <div class="team-initials">AL</div>
+        <h4>Alagarasan R</h4>
+        <div class="role">Chief Transformation Officer</div>
+        <p>Cloud, DevOps, platform engineering, automation, AI enablement.</p>
+      </div>
+      <div class="team-cell">
+        <div class="team-initials">SV</div>
+        <h4>Santhosh V</h4>
+        <div class="role">Chief Information Security Officer</div>
+        <p>18+ yrs enterprise &amp; cloud security, Zero Trust, SOC, GRC.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESENCE -->
+<section class="presence">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-dark">Where We Operate</div>
+      <h2 style="color:#fff;">Geographic presence.</h2>
+    </div>
+    <div class="presence-grid reveal">
+      <div class="region-block">
+        <h3>India</h3>
+        <ul class="city-list">
+          <li>Chennai <span class="pin">HQ</span></li>
+          <li>Coimbatore <span class="pin">●</span></li>
+        </ul>
+      </div>
+      <div class="region-block">
+        <h3>Southeast Asia</h3>
+        <ul class="city-list">
+          <li>Singapore <span class="pin">●</span></li>
+          <li>Malaysia <span class="pin">●</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLANCE -->
+<section class="glance">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">At A Glance</div>
+      <h2>Key differentiators.</h2>
+    </div>
+    <div class="glance-grid reveal">
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>AI-Powered Transformation Consulting</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Cyber Security &amp; Zero Trust Expertise</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Cloud &amp; Infrastructure Modernization</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Platform Engineering &amp; DevOps Excellence</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Automation-First Delivery Model</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Executive Advisory &amp; Governance</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>End-to-End Transformation Ownership</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>GCC &amp; Southeast Asia Market Focus</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Enterprise-Grade Delivery Capability</span></div>
+      <div class="glance-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Outcome-Driven Engagement Model</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta" id="contact">
+  <div class="wrap cta-inner">
+    <div class="eyebrow on-dark" style="justify-content:center;">Strategic Positioning</div>
+    <h2>Building intelligent, secure &amp; <em>future-ready</em> digital enterprises.</h2>
+    <p class="brand-promise">CloudT6 empowers organizations to modernize, automate, secure and innovate — creating sustainable competitive advantage in an increasingly digital world.</p>
+    <a href="mailto:contact@cloudt6.com" class="btn-primary">EMAIL CONTACT@CLOUDT6.COM</a>
+
+    <footer>
+      <div>CLOUDT6 — Transform. Automate. Innovate. Secure. Scale.</div>
+      <div class="foot-links">
+        <span>India · Southeast Asia</span>
+        <a href="mailto:contact@cloudt6.com">contact@cloudt6.com</a>
+        <a href="https://www.cloudt6.com">www.cloudt6.com</a>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // header background intensifies after scrolling past hero
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 60){ header.style.background = 'rgba(8,17,28,0.95)'; }
+    else { header.style.background = 'rgba(8,17,28,0.82)'; }
+  });
+</script>
+
+</body>
+</html>
